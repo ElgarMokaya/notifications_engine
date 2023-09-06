@@ -1,0 +1,13 @@
+# MySQL Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/serianu_db
+spring.datasource.username=velma
+spring.datasource.password=mokaya
+
+# Hibernate Properties
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+# Other Spring Boot Properties
+spring.application.name=notifications_engine
+server.port=8080

@@ -1,0 +1,14 @@
+package services;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import models.Notification;
+
+public interface NotificationsService {
+	ResponseEntity<Notification> createNotification ( @RequestBody Notification notification);
+
+	
+
+
+}
