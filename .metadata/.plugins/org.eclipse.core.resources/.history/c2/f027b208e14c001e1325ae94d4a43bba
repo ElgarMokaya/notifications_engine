@@ -1,0 +1,9 @@
+package service;
+
+import com.engine.notifications.models.Notification;
+
+public interface NotificationService {
+	
+	    void sendNotification(Notification notification);	
+
+}
