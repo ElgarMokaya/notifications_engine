@@ -7,20 +7,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.engine.notifications.exceptions.CustomException;
 import com.engine.notifications.models.Notification;
 import com.engine.notifications.service.NotificationService;
+import com.engine.notifications.service.SlackIntegrationService;
 
 @RestController
 @RequestMapping("/api/notifications")
 public class NotificationController {
 	@Autowired
 	private  NotificationService notificationService;
+	@Autowired
+    private SlackIntegrationService slackIntegrationService;
 	
 	
-	 @PostMapping("/send")
-	    public ResponseEntity<Void> sendNotification(@RequestBody Notification notification) {
-	        notificationService.sendNotification(notification);
-	        // Implement logic to send the notification to Slack using an API integration here
-	        return ResponseEntity.ok().build();
+	 @PostMapping("/send-notification")
+	    public ResponseEntity<String> sendNotification(@RequestBody Notification notification) {
+		 try {
+	            // Your notification sending logic here
+			 notificationService.sendNotification(notification);
+			// Implement logic to send the notification to Slack using an API integration here
+			 
+			 //boolean notificationFailed = sendNotificationToExternalService(notification);
+ slackIntegrationService.sendSlackMessage("#your-channel", notification.getMessage());
+	            
+	            return ResponseEntity.ok("Notification sent successfully.");
+	        } catch (Exception e) {
+	            throw new CustomException("An error occurred while sending the notification.");
+	        }
+	    }
+
+
+
+	
+
+
+	        
+	        
+	       // return ResponseEntity.ok().build();
 	 }
-}
+

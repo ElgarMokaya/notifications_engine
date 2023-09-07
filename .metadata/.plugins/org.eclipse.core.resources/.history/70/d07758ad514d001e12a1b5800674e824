@@ -1,0 +1,5 @@
+package com.engine.notifications.security;
+
+public class SecurityConfig {
+
+}

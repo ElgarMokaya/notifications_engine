@@ -1,5 +1,10 @@
 package com.engine.notifications.models;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User  implements UserDetails{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,41 +23,50 @@ public class User {
     private String username;
 
     private String password;
-
-    // Constructors, getters, and setters
-
-    // Constructors
-    public User() {
-    }
-	
-	public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    private boolean enabled;
+    
+     @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Implement this method to return user roles
+        // Example: return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return null;
     }
 
-    // Getters and setters
-    public Long getId() {
-        return id;
+    @Override
+    public String getPassword() {
+        return password;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
+    
+    @Override
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    } 
+
+    
+    
+   
+
+    
 
 }
