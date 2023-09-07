@@ -31,22 +31,13 @@ public class SecurityConfig {
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
-//                .defaultSuccessUrl("/dashboard")
+            
             );
-//            .logout(logout -> logout
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login?logout")
-//            )
-//            .exceptionHandling(exceptionHandling -> exceptionHandling
-//                //.accessDeniedPage("/access-denied")
-  //          )
+
 
         return http.build();
     }
-//	 @Autowired
-//    public void bindAuthenticationProvider(AuthenticationManagerBuilder authenticationManagerBuilder)  throws Exception{
-//        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//    }
+//	 
 	 @Bean
 	 public AuthenticationManager authenticationManager(HttpSecurity http,  CustomUserDetailsService userDetailService)  throws Exception {
 		    return http.getSharedObject(AuthenticationManagerBuilder.class)
