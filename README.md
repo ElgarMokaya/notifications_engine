@@ -5,9 +5,8 @@ This is a simple web application that allows users to configure Slack settings a
 ## Features
 
 - Configure Slack settings, including the webhook URL.
-- Send notifications to Slack with custom messages.
-- User-friendly web interface.
-- Optional user authentication (if implemented).
+- Send notifications to Slack 
+- 
 
 ## Technologies Used
 
