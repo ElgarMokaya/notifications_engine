@@ -3,6 +3,7 @@ package com.engine.notifications.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,29 +24,36 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/api/send-notification").hasRole("USER")
+                .requestMatchers("/apinotification//send-notification").hasRole("USER")
                 .requestMatchers("/api/configure-slack").hasRole("USER")
-                .requestMatchers("/public-endpoint").permitAll()
+                .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
-                .defaultSuccessUrl("/dashboard")
-            )
-            .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
-            )
-            .exceptionHandling(exceptionHandling -> exceptionHandling
-                .accessDeniedPage("/access-denied")
+//                .defaultSuccessUrl("/dashboard")
             );
+//            .logout(logout -> logout
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/login?logout")
+//            )
+//            .exceptionHandling(exceptionHandling -> exceptionHandling
+//                //.accessDeniedPage("/access-denied")
+  //          )
 
         return http.build();
     }
-	 @Autowired
-    public void bindAuthenticationProvider(AuthenticationManagerBuilder authenticationManagerBuilder)  throws Exception{
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+//	 @Autowired
+//    public void bindAuthenticationProvider(AuthenticationManagerBuilder authenticationManagerBuilder)  throws Exception{
+//        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
+	 @Bean
+	 public AuthenticationManager authenticationManager(HttpSecurity http,  CustomUserDetailsService userDetailService)  throws Exception {
+		    return http.getSharedObject(AuthenticationManagerBuilder.class)
+		    	      .userDetailsService(userDetailsService)
+		    	      .and()
+		    	      .build();
+	 }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

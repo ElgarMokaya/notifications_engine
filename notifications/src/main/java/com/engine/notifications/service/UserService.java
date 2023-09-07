@@ -7,5 +7,5 @@ import com.engine.notifications.models.User;
 
 public interface UserService {
 	 User findByUsername(String username);
-	    User saveUser(User user);
+	    void saveUser(User user);
 }
