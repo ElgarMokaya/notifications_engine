@@ -27,9 +27,7 @@ public class NotificationController {
 	            // Your notification sending logic here
 			 notificationService.sendNotification(notification);
 			// Implement logic to send the notification to Slack using an API integration here
-			 
-			 //boolean notificationFailed = sendNotificationToExternalService(notification);
- slackIntegrationService.sendSlackMessage("#your-channel", notification.getMessage());
+ slackIntegrationService.sendSlackMessage("#notifications-engine channel", notification.getMessage());
 	            
 	            return ResponseEntity.ok("Notification sent successfully.");
 	        } catch (Exception e) {

@@ -1,6 +1,8 @@
 package com.engine.notifications.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.engine.notifications.models.User;
@@ -10,7 +12,7 @@ import com.engine.notifications.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private  UserRepository userRepository;
-    //private  BCryptPasswordEncoder passwordEncoder;
+    private  BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public User findByUsername(String username) {
@@ -20,8 +22,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-		//user.setPassword(passwordEncoder.encode(user.getPassword()));
-       // userRepository.save(user);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
 		
 	}
 

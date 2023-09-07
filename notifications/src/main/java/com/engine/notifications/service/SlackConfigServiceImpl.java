@@ -12,8 +12,7 @@ public class SlackConfigServiceImpl implements SlackConfigService{
 	private  SlackConfigRepository slackConfigRepository;
 	@Override
 	public SlackConfig getSlackConfig() {
-		 // Implement logic to retrieve Slack configuration
-        // Example: Retrieve the configuration with ID 1
+		 //Retrieve the configuration with ID 1
         return slackConfigRepository.findById(1L).orElse(null);
 	}
 

@@ -15,16 +15,18 @@ public class Notification {
     private Long id;
 
     private String message;
+    private String channel;
 
-    // Constructors, getters, and setters
+    
 
     // Constructors
     public Notification() {
     }
     
-    public Notification(String message) {
+    public Notification(String message,String channel) {
         this.message = message;
-    }
+        this.channel=channel;
+        }
 
     // Getters and setters
     public Long getId() {
@@ -40,6 +42,14 @@ public class Notification {
     }
     public void setMessage(String message) {
         this.message = message;
+    }
+    
+    public String getChannel() {
+        return channel;
+    }
+    
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
 }
