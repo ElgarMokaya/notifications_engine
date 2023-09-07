@@ -14,7 +14,7 @@ This is a simple web application that allows users to configure Slack settings a
 - **Backend:** Spring Boot (Java), MySQL database.
 - **Frontend:** Angular (TypeScript).
 - **API Integrations:** Slack API.
-- **Authentication (Optional):** [Authentication provider/library used, e.g., Spring Security].
+- **Authentication  
 - **Database:** MySQL.
 
 ## Setup
