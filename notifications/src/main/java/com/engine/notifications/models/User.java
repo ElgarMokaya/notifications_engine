@@ -1,12 +1,13 @@
 package com.engine.notifications.models;
 import jakarta.persistence.JoinColumn;
 
-
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -44,9 +45,16 @@ public class User  implements UserDetails{
     
      @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Implement this method to return user roles
-        // Example: return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-        return null;
+ // Create a collection to store user roles
+    Collection<GrantedAuthority> authorities = new ArrayList<>();
+
+    // Iterate through the user's roles and add them as authorities
+    for (Role role : roles) {
+      
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
+    }
+
+    return authorities;
     }
 
     @Override
