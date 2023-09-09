@@ -2,6 +2,7 @@ package com.engine.notifications.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.engine.notifications.service.NotificationService;
 import com.engine.notifications.service.SlackIntegrationService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200") // Allow requests from localhost:4200
 @RequestMapping("/api/notifications")
 public class NotificationController {
 	@Autowired

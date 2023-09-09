@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'driver-class-name'"
+  },
+  {
+    "name": "slack.api.token",
+    "type": "java.lang.String",
+    "description": "A description for 'slack.api.token'"
+  },
+  {
+    "name": "security.basic.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'security.basic.enabled'"
+  }
+]}

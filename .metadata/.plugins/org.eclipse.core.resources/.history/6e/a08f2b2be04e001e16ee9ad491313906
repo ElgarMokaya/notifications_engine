@@ -1,0 +1,22 @@
+# MySQL Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/serianu_db?autoReconnect=true&useSSL=false&createDatabaseIfNotExist=true
+spring.datasource.username=velma
+spring.datasource.password=mokaya
+
+# Hibernate Properties
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#slack api token
+slack.api.token=${slack.api.token}
+
+
+# port
+server.port=8080
+
+
+
+# Disable Spring Security
+#security.basic.enabled=false
